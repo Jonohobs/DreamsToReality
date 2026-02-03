@@ -97,6 +97,30 @@ python preprocess.py input/ output/ --min-blur-score 150 --duplicate-threshold 0
 
 ---
 
+## Agent Infrastructure
+
+This repo includes a persistent memory and skills system in `.agent/`:
+
+```
+.agent/
+├── memory/
+│   ├── context.md      # Who Jonathan is, current projects, preferences
+│   ├── decisions.md    # Key decisions made across sessions
+│   └── learnings.md    # What works and what doesn't
+├── skills/
+│   ├── research.md     # Research patterns (Ralph method, GitHub mining)
+│   └── cost-routing.md # Model selection based on task complexity
+├── workflows/
+│   └── save-progress.md
+└── ROADMAP.md          # Weekly/monthly/quarterly planning hub
+```
+
+**On session start**: Read `.agent/memory/context.md` for background.
+**During work**: Update `decisions.md` and `learnings.md` as appropriate.
+**Before ending**: Check ROADMAP.md and mark progress.
+
+---
+
 ## Changelog
 - **2026-02-03** — Added `preprocess.py` frame preprocessing pipeline
 - **Initial** — Project setup, research phase
