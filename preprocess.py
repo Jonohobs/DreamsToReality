@@ -8,7 +8,7 @@ Prepares Dreams gameplay footage for photogrammetry by:
 4. Quality checks (blur detection, etc.)
 
 Usage:
-    python preprocess.py <input_dir> <output_dir> [--remove-bg]
+    python preprocess.py <input_dir> <output_dir> [--remove-bg] --min-blur-score 2.0
 """
 
 import os
@@ -119,6 +119,7 @@ def preprocess_frames(
         'ui_filtered': 0,
         'blur_filtered': 0,
         'duplicate_filtered': 0,
+        'blur_scores': [],
         'kept': 0,
         'errors': 0
     }
@@ -144,6 +145,8 @@ def preprocess_frames(
             
             # Check blur
             blur_score = calculate_blur_score(image)
+            stats['blur_scores'].append(blur_score)
+            
             if blur_score < min_blur_score:
                 stats['blur_filtered'] += 1
                 continue
@@ -175,6 +178,9 @@ def preprocess_frames(
         f.write(f"# Total: {stats['kept']} frames\n")
         f.write(f"# UI filtered: {stats['ui_filtered']}\n")
         f.write(f"# Blur filtered: {stats['blur_filtered']}\n")
+        if stats['blur_scores']:
+            avg_blur = sum(stats['blur_scores']) / len(stats['blur_scores'])
+            f.write(f"# Average Blur Score: {avg_blur:.2f}\n")
         f.write(f"# Duplicate filtered: {stats['duplicate_filtered']}\n\n")
         for frame in kept_frames:
             f.write(f"{frame}\n")
@@ -209,8 +215,8 @@ def main():
     parser.add_argument(
         '--min-blur-score',
         type=float,
-        default=100.0,
-        help='Minimum blur score (higher = sharper required)'
+        default=2.0,
+        help='Minimum blur score (higher = sharper required, default 2.0 for Dreams)'
     )
     parser.add_argument(
         '--duplicate-threshold',
@@ -243,6 +249,8 @@ def main():
     print(f"Duplicate filtered: {stats['duplicate_filtered']}")
     print(f"Errors:            {stats['errors']}")
     print(f"Frames kept:       {stats['kept']}")
+    if stats['blur_scores']:
+        print(f"Avg Blur Score:    {sum(stats['blur_scores']) / len(stats['blur_scores']):.2f}")
     print("=" * 60)
     print(f"\nProcessed frames saved to: {args.output_dir}")
 

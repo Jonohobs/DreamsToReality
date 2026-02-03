@@ -1,0 +1,8 @@
+# Preprocessed frames for photogrammetry
+# Total: 1 frames
+# UI filtered: 89
+# Blur filtered: 5354
+# Average Blur Score: 4.20
+# Duplicate filtered: 4
+
+frame_000000.png

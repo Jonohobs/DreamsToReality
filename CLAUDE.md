@@ -24,6 +24,8 @@ Jonathan (jonat) — solo developer, also working on an improv multiplayer game,
 | Component | File | Status |
 |-----------|------|--------|
 | Frame Preprocessor | `preprocess.py` | ✅ Working |
+| Pipeline Automation | `pipeline.py` | ✅ V1 Implemented |
+| Research Report | `research_report.md` | ✅ Complete |
 | Dependencies | `requirements.txt` | ✅ Defined |
 
 ### Frame Preprocessor Features
@@ -122,5 +124,10 @@ This repo includes a persistent memory and skills system in `.agent/`:
 ---
 
 ## Changelog
+- **2026-02-03** — Optimized `preprocess.py` for Dreams' soft render style (threshold 2.0); processed 5.4k frames
+- **2026-02-03** — Documented findings in `DREAMS_RENDERING_FINDINGS.md`
+- **2026-02-03** — Added `pipeline.py` for automated video-to-frames workflow
+- **2026-02-03** — Drafted `CHAPTER_ONE.md` for "The Hidden Prompt" in `scifi-writing/`
+- **2026-02-03** — Completed Photogrammetry vs NeRF `research_report.md`
 - **2026-02-03** — Added `preprocess.py` frame preprocessing pipeline
 - **Initial** — Project setup, research phase
