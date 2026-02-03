@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Data (large files — don't commit raw frames/scans)
+*.png
+*.jpg
+*.jpeg
+*.dat
+*.ply
+*.obj
+*.stl
+*.glb
+*.gltf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
