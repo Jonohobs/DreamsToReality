@@ -8,7 +8,7 @@
                     🎮 PlayStation Dreams → 🧊 3D Models
 ```
 
-# Dreams to Reality Converter
+# Dreams to Reality 🎮➡️🗿 Converter
 
 ## Vision
 A photogrammetry pipeline for extracting 3D models from Dreams (PlayStation). Convert creations made in Dreams into usable 3D assets.
