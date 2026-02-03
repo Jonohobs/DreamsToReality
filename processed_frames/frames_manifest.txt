@@ -1,0 +1,7 @@
+# Preprocessed frames for photogrammetry
+# Total: 1 frames
+# UI filtered: 5
+# Blur filtered: 176
+# Duplicate filtered: 0
+
+frame000001.png

@@ -1,39 +1,102 @@
+```
+    ____                                  __           ____             ___ __       
+   / __ \_________  ____ _____ ___  _____/ /_____     / __ \___  ____ _/ (_) /___  __
+  / / / / ___/ _ \/ __ `/ __ `__ \/ ___/ __/ __ \   / /_/ / _ \/ __ `/ / / __/ / / /
+ / /_/ / /  /  __/ /_/ / / / / / (__  ) /_/ /_/ /  / _, _/  __/ /_/ / / / /_/ /_/ / 
+/_____/_/   \___/\__,_/_/ /_/ /_/____/\__/\____/  /_/ |_|\___/\__,_/_/_/\__/\__, /  
+                                                                           /____/   
+                    🎮 PlayStation Dreams → 🧊 3D Models
+```
+
 # Dreams to Reality Converter
 
 ## Vision
-A photogrammetry tool/pipeline for extracting 3D models from Dreams (PlayStation). The goal is to convert creations made in Dreams into real-world-usable 3D assets.
+A photogrammetry pipeline for extracting 3D models from Dreams (PlayStation). Convert creations made in Dreams into usable 3D assets.
 
 ## Owner
-Jonathan (jonat) — solo developer, also working on an improv multiplayer game and AI workflow optimization.
+Jonathan (jonat) — solo developer, also working on an improv multiplayer game, portfolio website, and AI workflow optimization.
 
-## Current Status: Research & Experimentation
+---
 
-### What exists so far
-- Frame extraction from Dreams gameplay footage (PNG sequences from video capture)
-- RealityScan data exports (.dat files — models, metadata, color normalization, control points)
-- Reference screenshots of Dreams bugs/artifacts
-- No codebase yet — still exploring approaches
+## Current Status: Active Development
 
-### Key locations (on this machine)
+### What's Built
+| Component | File | Status |
+|-----------|------|--------|
+| Frame Preprocessor | `preprocess.py` | ✅ Working |
+| Dependencies | `requirements.txt` | ✅ Defined |
+
+### Frame Preprocessor Features
+- **UI overlay detection** — filters out frames with Dreams interface elements
+- **Blur detection** — removes blurry/motion-blur frames (Laplacian variance)
+- **Duplicate detection** — removes near-identical frames (histogram comparison)
+- **CLI interface** — configurable thresholds, progress bars, statistics
+
+### Quick Start
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run preprocessing
+python preprocess.py <input_frames_dir> <output_dir>
+
+# Options
+python preprocess.py input/ output/ --min-blur-score 150 --duplicate-threshold 0.95
+```
+
+---
+
+## Key Data Locations
 - `~/OneDrive/Desktop/DesktopFiles/ssvid.net--Dreams-Photogrammetry-Test_1080p frames/` — extracted video frames
 - `~/OneDrive/Desktop/DesktopFiles/Reality scan attempt 1/` — RealityScan export data
-- `~/iCloudDrive/Desktop/Dreams Bugs/` — reference images of Dreams rendering bugs/artifacts
+- `~/iCloudDrive/Desktop/Dreams Bugs/` — reference images of Dreams rendering bugs
 
-## Technical Challenges
-- Dreams uses a signed distance field (SDF) renderer, not traditional polygons — this makes photogrammetry from screenshots fundamentally different from real-world scanning
-- Camera control in Dreams is limited, making consistent multi-angle capture difficult
-- Dreams' lighting and post-processing effects can confuse photogrammetry algorithms
-- Output quality depends heavily on the complexity of the Dreams creation
+---
 
-## Potential Approaches (to be explored)
-- Traditional photogrammetry pipeline (frame extraction → feature matching → point cloud → mesh)
-- Neural radiance fields (NeRF) from captured footage
-- Direct SDF extraction if Dreams' data format can be reverse-engineered
-- Hybrid approach combining multiple techniques
+## Technical Context
+
+### Why Dreams is Hard
+- Dreams uses **signed distance field (SDF) rendering**, not traditional polygons
+- Limited camera control makes consistent multi-angle capture difficult
+- Post-processing effects (bloom, DoF) confuse photogrammetry algorithms
+- Output quality varies wildly based on the Dreams creation's complexity
+
+### Approaches Under Consideration
+1. **Traditional photogrammetry** — preprocessed frames → feature matching → point cloud → mesh
+2. **NeRF-based** — neural radiance fields from video (more tolerant of lighting variation)
+3. **Hybrid** — combine multiple techniques based on scene characteristics
+
+---
+
+## Next Steps (Roadmap)
+- [ ] Test preprocessor on full video capture dataset
+- [ ] Integrate with photogrammetry tool (Meshroom? COLMAP?)
+- [ ] Experiment with NeRF approach for comparison
+- [ ] Document what works and what doesn't for Dreams-specific content
+
+---
 
 ## Agent Guidelines
-- This project is exploratory — don't over-engineer or build production infrastructure prematurely
-- Prioritize quick experiments and prototypes over polished code
-- Document findings and dead ends — knowing what doesn't work is valuable here
-- Python is the likely language for tooling (photogrammetry libraries, image processing)
-- Ask before committing to a specific photogrammetry library or approach — the field is moving fast
+
+### Do
+- Build quick experiments and prototypes
+- Document findings, including dead ends
+- Use Python for tooling
+- Commit working code to the repo frequently
+
+### Don't
+- Over-engineer or build production infrastructure prematurely
+- Commit to a specific photogrammetry library without discussing first
+- Assume traditional photogrammetry techniques will "just work" on Dreams content
+
+### Code Style
+- Python with type hints where helpful
+- Use OpenCV for image processing
+- CLI tools with argparse
+- Progress bars with tqdm for long operations
+
+---
+
+## Changelog
+- **2026-02-03** — Added `preprocess.py` frame preprocessing pipeline
+- **Initial** — Project setup, research phase
