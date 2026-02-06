@@ -13,6 +13,7 @@
 - **Human in the loop** — Keep humans involved for critical decisions
 - **Memory Protocol** — Explicitly ask user: "Should we save this to learnings.md?" for new discoveries. Prevents context loss.
 - **Consolidation**: Taking a moment to write to `.agent/memory` when the system hangs or user context switches allows for a clean "hard reset" of the session without losing valid progress.
+- **High-Fidelity Saves**: Use powerful models (e.g., Gemini 1.5 Pro) when saving sessions to ensure the conversation state and subtle context are accurately captured and finalized.
 
 ### What Doesn't Work ❌
 - **Video editing** — "Editing not solved" (noted in research)
