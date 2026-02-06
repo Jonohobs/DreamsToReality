@@ -39,5 +39,12 @@ We have proven that data can be extracted. Now we must refine it.
 *   **Meshing**: Poisson Surface Reconstruction could "skin" the cloud, smoothing out the fleck-noise into hard planes.
 *   **NeRF / Gaussian Splatting**: As per our `ROADMAP.md` update, the next logical step is **Luma AI**. NeRFs are natively volumetric—they "understand" fog, soft edges, and view-dependent lighting better than hard-geometry photogrammetry. This aligns perfectly with the SDF nature of Dreams.
 
+### 7. Execution Phase: Gaussian Splatting
+*Method: Luma AI / 3DGS*
+Transitioned from CPU-heavy COLMAP to AI-enhanced Gaussian Splatting. 
+- **Preprocessing**: Processed 150 frames with sharpening and denoising.
+- **Output**: Generated a cloud-ready `clean_frames_splat.zip` for manual training.
+- **Result**: Awaiting manual upload and processing.
+
 ---
-*Created 2026-02-03*
+*Created 2026-02-03 | Updated 2026-02-06*
