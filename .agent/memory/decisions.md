@@ -4,7 +4,15 @@
 
 ---
 
-## 2026-02-03
+## 2026-02-06
+
+### Infrastructure Maintenance Mode
+- **Decision**: Shift focus to infrastructure maintenance when system performance degrades.
+- **Why**: Antigravity UI freezing and model selector issues made complex coding tasks (like photogrammetry pipeline) inefficient.
+- **Action**: Verified agent memory integrity, deprioritized heavy compute tasks.
+- **Outcome**: Switched to "clean up" mode to prepare for a fresh start.
+
+## 2026-02-03 [-- Previous entries preserved below --]
 
 ### AI Infrastructure Setup
 - **Decision**: Implement memory system using markdown files in `.agent/memory/`
@@ -40,6 +48,19 @@
 - **Why**: Redundancy, cross-session memory, general vs project-specific knowledge
 - **Status**: Discussed, not yet implemented
 - **Outcome**: Pending - user tired, revisit later
+
+### Dreams Reconstruction Source
+- **Decision**: Switch from local 360p video to 1080p YouTube source
+- **Why**: Dreams rendering is detail-depdendent; 360p lacked feature resolution for COLMAP.
+- **Trade-off**: 9x processing time for ~10x point density.
+- **Outcome**: Success. 110k points vs 11k points.
+- **Next Step**: Attempt Luma AI (NeRF/Gaussian Splatting) to see if it handles "soft" geometry better than photogrammetry.
+
+### 2026-02-05: Memory Management Protocol
+- **Problem**: User concerned about losing context/tools in long chats vs. performance overhead of large contexts.
+- **Decision**: Adopt a "Save as we go" protocol.
+- **Action**: Agent will proactively ask "Should we save this to learnings.md?" when a useful pattern or tool is discovered.
+- **Benefit**: Keeps active context light while preserving long-term knowledge in `.agent/memory/`.
 
 ---
 

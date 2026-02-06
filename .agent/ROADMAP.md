@@ -14,8 +14,9 @@
 - [ ] Research MCP server for Google Drive integration
 
 ### Dreams to Reality
-- [ ] Test preprocessor on full video capture dataset
-- [ ] Set up Meshroom for photogrammetry testing
+- [x] Test COLMAP photogrammetry (1080p source)
+- [ ] Experiment with Luma AI / NeRF approach
+- [ ] Set up Meshroom for photogrammetry testing (Backup)
 
 ### Improv Game
 - [ ] Complete AI prompt integration

@@ -89,6 +89,24 @@ def calculate_frame_similarity(frame1: np.ndarray, frame2: np.ndarray) -> float:
     return cv2.compareHist(hist1, hist2, cv2.HISTCMP_CORREL)
 
 
+def enhance_image(image: np.ndarray, sharpen: bool = True, denoise: bool = True) -> np.ndarray:
+    """
+    Apply sharpening and denoising to enhance image quality for photogrammetry.
+    """
+    processed = image.copy()
+    
+    if denoise:
+        # Fast non-local means denoising - good for removing fleck noise while preserving edges
+        processed = cv2.fastNlMeansDenoisingColored(processed, None, 10, 10, 7, 21)
+        
+    if sharpen:
+        # Unsharp masking
+        gaussian_blur = cv2.GaussianBlur(processed, (9, 9), 10.0)
+        processed = cv2.addWeighted(processed, 1.5, gaussian_blur, -0.5, 0)
+        
+    return processed
+
+
 def preprocess_frames(
     input_dir: Path,
     output_dir: Path,
@@ -96,6 +114,8 @@ def preprocess_frames(
     skip_duplicates: bool = True,
     min_blur_score: float = 100.0,
     duplicate_threshold: float = 0.98,
+    sharpen: bool = False,
+    denoise: bool = False,
     verbose: bool = True
 ) -> dict:
     """
@@ -126,6 +146,8 @@ def preprocess_frames(
     
     if verbose:
         print(f"Processing {len(frames)} frames from {input_dir}")
+        if sharpen or denoise:
+            print(f"Enhancements: {'Sharpen ' if sharpen else ''}{'Denoise' if denoise else ''}")
     
     previous_frame = None
     kept_frames = []
@@ -158,9 +180,13 @@ def preprocess_frames(
                     stats['duplicate_filtered'] += 1
                     continue
             
-            # Frame passed all checks - copy to output
+            # Enhancement (Optional)
+            if sharpen or denoise:
+                image = enhance_image(image, sharpen=sharpen, denoise=denoise)
+            
+            # Frame passed all checks - save to output
             output_path = output_dir / frame_path.name
-            shutil.copy2(frame_path, output_path)
+            cv2.imwrite(str(output_path), image)
             
             stats['kept'] += 1
             kept_frames.append(frame_path.name)
@@ -181,7 +207,9 @@ def preprocess_frames(
         if stats['blur_scores']:
             avg_blur = sum(stats['blur_scores']) / len(stats['blur_scores'])
             f.write(f"# Average Blur Score: {avg_blur:.2f}\n")
-        f.write(f"# Duplicate filtered: {stats['duplicate_filtered']}\n\n")
+        f.write(f"# Duplicate filtered: {stats['duplicate_filtered']}\n")
+        f.write(f"# Sharpen: {sharpen}\n")
+        f.write(f"# Denoise: {denoise}\n\n")
         for frame in kept_frames:
             f.write(f"{frame}\n")
     
@@ -224,6 +252,16 @@ def main():
         default=0.98,
         help='Similarity threshold for duplicate detection (0-1)'
     )
+    parser.add_argument(
+        '--sharpen',
+        action='store_true',
+        help='Enable image sharpening'
+    )
+    parser.add_argument(
+        '--denoise',
+        action='store_true',
+        help='Enable denoising'
+    )
     
     args = parser.parse_args()
     
@@ -237,7 +275,9 @@ def main():
         skip_ui=not args.no_ui_filter,
         skip_duplicates=not args.no_duplicate_filter,
         min_blur_score=args.min_blur_score,
-        duplicate_threshold=args.duplicate_threshold
+        duplicate_threshold=args.duplicate_threshold,
+        sharpen=args.sharpen,
+        denoise=args.denoise
     )
     
     print("\n" + "=" * 60)

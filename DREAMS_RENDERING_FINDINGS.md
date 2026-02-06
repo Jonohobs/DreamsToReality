@@ -24,6 +24,11 @@ During the initial attempt to build a photogrammetry pipeline for PlayStation Dr
 - **Bottleneck**: `shutil.copy2` and `compareHist` (duplicate detection) are the primary slowdowns.
 - **Optimization**: "Lazy" extraction added to `pipeline.py` to avoid re-running FFmpeg if frames exist.
 
+### 4. In-Dreams Optimization (The "Fluffiness" Factor)
+**Insight**: Dreams models have a default "painterly" or "fluffy" look which obscures high-frequency details (fleck patterns). 
+- **Optimization Strategy**: Reducing "fluffiness" and "softness" settings inside the Dreams editor before exporting the video.
+- **Expected Result**: Sharper edges and more distinct fleck patterns, leading to significantly better feature matching in COLMAP/Meshroom and higher quality mesh generation.
+
 ## Current State
 - **Pipeline**: Automated (`pipeline.py`) -> Extract -> Preprocess -> Ready for Meshroom.
 - **Status**: Pipeline COMPUTED successfully with adjusted thresholds (blur=2.0).

@@ -56,52 +56,14 @@ python preprocess.py input/ output/ --min-blur-score 150 --duplicate-threshold 0
 ---
 
 ## Technical Context
+For details on Dreams SDF rendering and photogrammetry challenges, see [DREAMS_RENDERING_FINDINGS.md](DREAMS_RENDERING_FINDINGS.md).
 
-### Why Dreams is Hard
-- Dreams uses **signed distance field (SDF) rendering**, not traditional polygons
-- Limited camera control makes consistent multi-angle capture difficult
-- Post-processing effects (bloom, DoF) confuse photogrammetry algorithms
-- Output quality varies wildly based on the Dreams creation's complexity
+> [!IMPORTANT]
+> **System Stability**: `colmap_out/` and `frames/` directories contain thousands of files. They MUST be excluded from the IDE via `.gitignore` to prevent file-watcher freezing. Do not remove these exclusions.
 
-### Approaches Under Consideration
-1. **Traditional photogrammetry** — preprocessed frames → feature matching → point cloud → mesh
-2. **NeRF-based** — neural radiance fields from video (more tolerant of lighting variation)
-3. **Hybrid** — combine multiple techniques based on scene characteristics
+## Agent Infrastructure (Universal)
 
----
-
-## Next Steps (Roadmap)
-- [ ] Test preprocessor on full video capture dataset
-- [ ] Integrate with photogrammetry tool (Meshroom? COLMAP?)
-- [ ] Experiment with NeRF approach for comparison
-- [ ] Document what works and what doesn't for Dreams-specific content
-
----
-
-## Agent Guidelines
-
-### Do
-- Build quick experiments and prototypes
-- Document findings, including dead ends
-- Use Python for tooling
-- Commit working code to the repo frequently
-
-### Don't
-- Over-engineer or build production infrastructure prematurely
-- Commit to a specific photogrammetry library without discussing first
-- Assume traditional photogrammetry techniques will "just work" on Dreams content
-
-### Code Style
-- Python with type hints where helpful
-- Use OpenCV for image processing
-- CLI tools with argparse
-- Progress bars with tqdm for long operations
-
----
-
-## Agent Infrastructure
-
-This repo includes a persistent memory and skills system in `.agent/`:
+This repo includes a persistent memory and skills system in `.agent/`. **ALL AGENTS** (Claude, Gemini, ChatGPT, Local LLMs) are expected to read and utilize this system to maintain continuity.
 
 ```
 .agent/
@@ -120,6 +82,7 @@ This repo includes a persistent memory and skills system in `.agent/`:
 **On session start**: Read `.agent/memory/context.md` for background.
 **During work**: Update `decisions.md` and `learnings.md` as appropriate.
 **Before ending**: Check ROADMAP.md and mark progress.
+**For major milestones**: Add a new entry to `JOURNEY.md` to document the narrative of your contribution.
 
 ---
 
