@@ -12,6 +12,7 @@
 - [x] Document cost-routing patterns
 - [ ] Configure additional OpenClaw providers (Ollama, Groq, DeepSeek)
 - [ ] Research MCP server for Google Drive integration
+- [x] Audit extensions and investigate critical disk space (C: < 1GB)
 
 ### Dreams to Reality
 - [x] Test COLMAP photogrammetry (1080p source)
