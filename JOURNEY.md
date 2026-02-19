@@ -46,5 +46,29 @@ Transitioned from CPU-heavy COLMAP to AI-enhanced Gaussian Splatting.
 - **Output**: Generated a cloud-ready `clean_frames_splat.zip` for manual training.
 - **Result**: Awaiting manual upload and processing.
 
+### 8. The A/B Test: rembg vs SAM — "Don't Assume, Measure"
+*Date: 2026-02-06 | Agent: Claude Code / Opus*
+
+A Gemini AI Mode research session surfaced a key insight: background removal is the highest-impact preprocessing step for Dreams photogrammetry. Without it, reconstruction engines try to map the turntable background as geometry — polluting the model with phantom surfaces.
+
+Two contenders emerged:
+- **rembg (U2-Net)**: The lightweight champion. 170MB model, CPU-only, ~0.43s/frame. Purpose-built for background removal.
+- **SAM (Segment Anything Model)**: Meta's general-purpose segmentation powerhouse. 375MB checkpoint + PyTorch (~700MB). GPU-preferred but running on CPU at ~63s/frame — 150x slower.
+
+The instinct was to assume SAM wins on quality because it's bigger and newer. But Jonathan pushed back: *"Don't assume SAM is better. Test with real data first."* Dreams renders have unusual SDF aesthetics — soft edges, painterly flecks, non-photorealistic lighting. What works for real photos might not work here.
+
+So we built `ab_compare.py` — a head-to-head comparison tool. Same 20 mushroom house frames, both models, side-by-side output grid. The test is running as this entry is written, SAM grinding through frames at ~1 minute each on CPU.
+
+**Early signal**: rembg blazed through in 10 seconds total. SAM will take ~20 minutes. If quality is comparable, the speed advantage alone makes rembg the clear winner for an iterative pipeline where you want fast feedback loops.
+
+*Results pending in `~/dreams-to-reality/ab_test/comparison_grid.png`*
+
+### 9. Side Quest: Financing the Swarm (OpenClaw)
+*Date: 2026-02-06*
+
+Investigation into investing in the OpenClaw project revealed it is maintained by Peter Steinberger as a community-funded open-source project.
+*   **Result**: No equity investment possible. Funding is via GitHub Sponsors or participation in crypto-native experiments (Moltbook hackathons).
+*   **Decision**: Support via usage/sponsorship if desired; no traditional ROI path available.
+
 ---
 *Created 2026-02-03 | Updated 2026-02-06*

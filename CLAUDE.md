@@ -24,7 +24,8 @@ Jonathan (jonat) — solo developer, also working on an improv multiplayer game,
 | Component | File | Status |
 |-----------|------|--------|
 | Frame Preprocessor | `preprocess.py` | ✅ Working |
-| Pipeline Automation | `pipeline.py` | ✅ V1 Implemented |
+| Background Segmentation | `segment.py` | ✅ Working |
+| Pipeline Automation | `pipeline.py` | ✅ V2 (with segmentation) |
 | Research Report | `research_report.md` | ✅ Complete |
 | Dependencies | `requirements.txt` | ✅ Defined |
 
@@ -33,6 +34,13 @@ Jonathan (jonat) — solo developer, also working on an improv multiplayer game,
 - **Blur detection** — removes blurry/motion-blur frames (Laplacian variance)
 - **Duplicate detection** — removes near-identical frames (histogram comparison)
 - **CLI interface** — configurable thresholds, progress bars, statistics
+
+### Background Segmentation (NEW)
+- **`segment.py`** — automatic background removal using rembg (U2-Net)
+- Isolates subject, replaces background with solid black
+- Dramatically improves reconstruction by preventing background geometry
+- Runs on CPU (~1-3 sec/frame), no GPU required
+- Integrated into `pipeline.py` as step 4 (enabled by default)
 
 ### Quick Start
 ```bash
@@ -93,4 +101,32 @@ This repo includes a persistent memory and skills system in `.agent/`. **ALL AGE
 - **2026-02-03** — Drafted `CHAPTER_ONE.md` for "The Hidden Prompt" in `scifi-writing/`
 - **2026-02-03** — Completed Photogrammetry vs NeRF `research_report.md`
 - **2026-02-03** — Added `preprocess.py` frame preprocessing pipeline
+- **2026-02-06** — Added `segment.py` background removal (rembg/U2-Net), integrated into pipeline as step 4
+- **2026-02-06** — Saved Gemini AI Mode photogrammetry research to agent memory
+- **2026-02-15** — Built in-Dreams capture tool: gobo spotlight pattern projection working, camera settings optimized (all post-processing off)
+- **2026-02-15** — Built web app: React + Tailwind frontend + FastAPI backend wrapping pipeline (localhost only)
+- **2026-02-15** — Created `BUILD_GUIDE_DREAMS.md` — step-by-step Dreams PS5 build instructions (also copied to iCloud)
 - **Initial** — Project setup, research phase
+
+## Web App
+
+Local development servers (not deployed):
+```bash
+# Backend (FastAPI)
+python api/main.py  # → http://127.0.0.1:8000
+
+# Frontend (React + Vite + Tailwind)
+cd web && npm run dev  # → http://127.0.0.1:5173
+```
+
+## In-Dreams Capture Tool
+
+**Status:** Gobo pattern projection working. Camera orbit animation next.
+
+**Two-pass capture workflow:**
+1. Texture pass first (clean sculpt, spotlight gobos OFF)
+2. Geometry pass second (gobos ON — projects tracking patterns onto sculpt)
+
+**Camera settings:** All post-processing OFF. Aperture 0%, FOV 50-60, brightness slightly down, tiny sharpen. See `BUILD_GUIDE_DREAMS.md` for full details.
+
+**Pattern guidance for users:** Spray paint X's in contrasting colors (blue, green, red, orange, white) randomly across sculpt. No regular grids. Cover hidden areas too.

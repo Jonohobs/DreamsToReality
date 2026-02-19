@@ -27,7 +27,7 @@
 
 | Tool | Verdict | Notes |
 |------|---------|-------|
-| OpenClaw | ✅ Works | Multi-model routing, good TUI |
+| OpenClaw | ✅ Works | Multi-model routing, good TUI. **Donation-based funding** (GitHub Sponsors), no equity investment. |
 | Ollama | ✅ Works | Local, private, free |
 | Antigravity | ✅ Works | Good for coding, browser broken |
 | Make.com | 🔍 Explore | Automation platform |
