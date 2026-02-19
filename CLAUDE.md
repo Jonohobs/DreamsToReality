@@ -18,6 +18,20 @@ Jonathan (jonat) — solo developer, also working on an improv multiplayer game,
 
 ---
 
+## Important: Capture Requirements
+
+**Photogrammetry needs surface texture to work.** Smooth, flat, or uniformly-coloured surfaces will produce poor results regardless of which software you use.
+
+**For Dreams sculpts (and any low-texture objects), you MUST add surface detail before capturing:**
+
+1. **Paint method (recommended):** Duplicate your sculpt, then spray random speckles, dots, and patterns in contrasting colours all over every surface. The messier, the better. This gives the photogrammetry matcher features to lock onto.
+2. **Gobo method:** Use gobo spotlight projectors in Dreams to project tracking patterns onto surfaces. Limited to ~6 per scene due to Dreams' thermometer.
+3. **Two-pass workflow:** Capture the messy version for geometry reconstruction, then capture the clean original for texture mapping.
+
+Without surface texture variation, ALL photogrammetry tools (RealityScan, COLMAP, Meshroom, Polycam) will produce poor results. This is a fundamental limitation of the technique, not a software bug.
+
+---
+
 ## Current Status: Active Development
 
 ### What's Built
@@ -25,7 +39,9 @@ Jonathan (jonat) — solo developer, also working on an improv multiplayer game,
 |-----------|------|--------|
 | Frame Preprocessor | `preprocess.py` | ✅ Working |
 | Background Segmentation | `segment.py` | ✅ Working |
-| Pipeline Automation | `pipeline.py` | ✅ V2 (with segmentation) |
+| Pipeline Automation | `pipeline.py` | ✅ V2 (with segmentation + reconstruction) |
+| COLMAP Reconstruction | `reconstruct.py` | ✅ Sparse working, dense slow |
+| RealityScan Integration | `run_realityscan.bat` | ✅ CLI automation |
 | Research Report | `research_report.md` | ✅ Complete |
 | Dependencies | `requirements.txt` | ✅ Defined |
 
