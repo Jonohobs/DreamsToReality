@@ -67,3 +67,8 @@ Thumbs.db
 
 # Horizons prompt (local dev only)
 horizons-prompt.md
+
+# Allow site public assets (images for the landing page)
+!site/public/**/*.jpg
+!site/public/**/*.png
+!site/src/assets/**/*.svg
