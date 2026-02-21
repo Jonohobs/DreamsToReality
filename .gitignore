@@ -40,6 +40,23 @@ comparison_report/
 luma_upload/
 data_v1/
 
+# Jarvis controller (private)
+jarvis/
+
+# Video/image/media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.svg
+
+# Export/scan data
+luma_export/
+luma_run_01/
+my_project/
+site/public/process/
+
 # Cloned repos / large binaries
 gsplat_repo/
 inria_3dgs/
@@ -68,7 +85,3 @@ Thumbs.db
 # Horizons prompt (local dev only)
 horizons-prompt.md
 
-# Allow site public assets (images for the landing page)
-!site/public/**/*.jpg
-!site/public/**/*.png
-!site/src/assets/**/*.svg
