@@ -1,28 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-const GITHUB_URL = "https://github.com/Jonohobs/DreamsToReality";
-const ISSUES_URL = "https://github.com/Jonohobs/DreamsToReality/issues";
-
 const PATREON_URL = "https://patreon.com/DreamsToReality";
 
 const LINKS = [
-  {
-    label: "GitHub",
-    sub: "Star, fork, contribute",
-    href: GITHUB_URL,
-    color: "#D4FF00",
-  },
   {
     label: "Support on Patreon",
     sub: "Help fund development",
     href: PATREON_URL,
     color: "#FF6BD6",
-  },
-  {
-    label: "Report a Bug",
-    sub: "Help us squash issues",
-    href: ISSUES_URL,
-    color: "#22D3EE",
   },
 ];
 

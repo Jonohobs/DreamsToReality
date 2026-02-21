@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-const GITHUB_URL = "https://github.com/Jonohobs/DreamsToReality";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -142,28 +141,6 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-5 justify-center reveal visible" style={{ animationDelay: "400ms" }}>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-heading text-sm rounded-full inline-flex items-center gap-3 transition-all duration-500"
-              style={{
-                padding: "0.4cm 1cm",
-                background: "#D4FF00",
-                color: "#0A0A0F",
-                fontWeight: 700,
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 30px rgba(212,255,0,0.4)";
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-                (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)";
-              }}
-            >
-              View on GitHub&ensp;↗
-            </a>
             <a
               href="#how-it-works"
               className="font-heading text-sm rounded-full inline-flex items-center gap-3 transition-all duration-500"

@@ -1,4 +1,3 @@
-const GITHUB_URL = "https://github.com/Jonohobs";
 const INSTAGRAM_URL = "https://instagram.com/jonathanhobman";
 const X_URL = "https://x.com/JonathanHobman";
 
@@ -43,18 +42,6 @@ export default function Footer() {
             onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)")}
           >
             X ↗
-          </a>
-          <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono-dm text-sm transition-colors duration-300"
-            style={{ color: "rgba(255,255,255,0.45)" }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "#22D3EE")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)")}
-          >
-            GitHub ↗
           </a>
         </div>
 
