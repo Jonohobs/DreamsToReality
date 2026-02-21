@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Data (large files — don't commit raw frames/scans)
+*.png
+*.jpg
+*.jpeg
+*.dat
+*.ply
+*.obj
+*.stl
+*.glb
+*.gltf
+*.pth
+*.bin
+*.onnx
+
+# Large Data Directories
+colmap_out/
+colmap_out_custom/
+colmap_out_hq/
+processed_frames/
+frames/
+frames_hq/
+frames_test/
+mushroom_frames/
+mushroom_frames_luma/
+mushroom_house/
+mushroom_house_bak/
+mushroom_house_hq/
+mushroom_house_hq_bak/
+novel-shapes/
+comparison_report/
+luma_upload/
+data_v1/
+
+# Cloned repos / large binaries
+gsplat_repo/
+inria_3dgs/
+COLMAP/
+*.exe
+*.zip
+
+# Logs
+*.log
+
+# Old agent memory (was committed by mistake)
+.agent/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Horizons prompt (local dev only)
+horizons-prompt.md
+
+# Allow site public assets (images for the landing page)
+!site/public/**/*.jpg
+!site/public/**/*.png
+!site/src/assets/**/*.svg

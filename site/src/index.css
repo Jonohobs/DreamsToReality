@@ -1,0 +1,175 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&display=swap');
+
+/* Dreams to Reality — Design System */
+
+:root {
+  --background: #0A0A0F;
+  --card: #111118;
+  --dreams-pink: #FF6BD6;
+  --dreams-violet: #A78BFA;
+  --dreams-cyan: #22D3EE;
+  --dreams-lime: #D4FF00;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background-color: #0A0A0F;
+  color: rgba(255, 255, 255, 0.95);
+  overflow-x: hidden;
+}
+
+/* Section/footer padding now handled per-component via inline styles */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+::selection {
+  background: rgba(255, 107, 214, 0.3);
+  color: #fff;
+}
+
+/* Font utilities */
+.font-heading {
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.font-mono-dm {
+  font-family: 'DM Mono', monospace;
+}
+
+/* Gradient text */
+.gradient-text-dreams {
+  background: linear-gradient(90deg, #FF6BD6 0%, #A78BFA 50%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphic card */
+.glass-card {
+  background: rgba(17, 17, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+}
+
+/* Hover shimmer border */
+.shimmer-border {
+  position: relative;
+}
+.shimmer-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 21px;
+  background: linear-gradient(135deg, #FF6BD6, #A78BFA, #22D3EE, #FF6BD6);
+  background-size: 300% 300%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  animation: gradient-shimmer 3s ease infinite;
+}
+.shimmer-border:hover::before {
+  opacity: 0.35;
+}
+
+/* Grain overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Nebula animations */
+.nebula-1 { animation: nebula-drift-1 18s ease-in-out infinite; }
+.nebula-2 { animation: nebula-drift-2 22s ease-in-out infinite; }
+.nebula-3 { animation: nebula-drift-3 16s ease-in-out infinite; }
+.nebula-4 { animation: nebula-drift-4 26s ease-in-out infinite; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyframes */
+@keyframes nebula-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+@keyframes nebula-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-50px, 30px) scale(1.08); }
+  66%       { transform: translate(30px, -20px) scale(0.95); }
+}
+@keyframes nebula-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, 40px) scale(1.06); }
+}
+@keyframes nebula-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-40px, -20px) scale(1.04); }
+}
+@keyframes wisp-pulse {
+  0%, 100% { box-shadow: 0 0 6px 2px #FF6BD6, 0 0 16px 6px #D4FF0066; opacity: 0.9; }
+  50%       { box-shadow: 0 0 12px 4px #D4FF00, 0 0 28px 10px #FF6BD666; opacity: 1; }
+}
+@keyframes blob-float {
+  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  33%       { transform: translate(-50%, -50%) scale(1.04) rotate(4deg); }
+  66%       { transform: translate(-50%, -50%) scale(0.97) rotate(-3deg); }
+}
+@keyframes gradient-shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Claude sparkle */
+@keyframes claude-breathe {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 6px rgba(224,122,58,0.3)); }
+  50%      { transform: scale(1.12) rotate(8deg); filter: drop-shadow(0 0 14px rgba(224,122,58,0.5)); }
+}
+@keyframes claude-sparkle-mini {
+  0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.4; }
+  50%      { transform: scale(1) rotate(-12deg); opacity: 0.7; }
+}
+.claude-sparkle { animation: claude-breathe 3.5s ease-in-out infinite; }
+.claude-sparkle-mini { animation: claude-sparkle-mini 4s ease-in-out infinite 0.8s; }
+
+/* Accessibility: respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; }
+  .nebula-1, .nebula-2, .nebula-3, .nebula-4 { animation: none; }
+  .shimmer-border::before { animation: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Accessibility: focus-visible outlines */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #D4FF00;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
