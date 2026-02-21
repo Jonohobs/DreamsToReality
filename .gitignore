@@ -7,7 +7,7 @@ build/
 .venv/
 venv/
 
-# Data (large files — don't commit raw frames/scans)
+# Data & media
 *.png
 *.jpg
 *.jpeg
@@ -20,55 +20,44 @@ venv/
 *.pth
 *.bin
 *.onnx
-
-# Large Data Directories
-colmap_out/
-colmap_out_custom/
-colmap_out_hq/
-processed_frames/
-frames/
-frames_hq/
-frames_test/
-mushroom_frames/
-mushroom_frames_luma/
-mushroom_house/
-mushroom_house_bak/
-mushroom_house_hq/
-mushroom_house_hq_bak/
-novel-shapes/
-comparison_report/
-luma_upload/
-data_v1/
-
-# Jarvis controller (private)
-jarvis/
-
-# Video/image/media files
 *.mp4
 *.avi
 *.mov
 *.mkv
 *.webm
 *.svg
+*.zip
+*.exe
 
-# Export/scan data
-luma_export/
-luma_run_01/
+# Output & data directories
+colmap_out*/
+processed_frames/
+frames*/
+mushroom_*/
+novel-shapes/
+luma_*/
+data_v1/
 my_project/
-site/public/process/
+results/
+uploads/
 
-# Cloned repos / large binaries
+# Internal / dev-only
+CLAUDE.md
+jarvis/
+playground/
+web/
+scifi-writing/
+.agent/
+*.bat
+
+# Cloned repos
 gsplat_repo/
 inria_3dgs/
 COLMAP/
-*.exe
-*.zip
+nerfstudio-env/
 
 # Logs
 *.log
-
-# Old agent memory (was committed by mistake)
-.agent/
 
 # OS
 .DS_Store
@@ -81,7 +70,3 @@ Thumbs.db
 # Environment
 .env
 .env.local
-
-# Horizons prompt (local dev only)
-horizons-prompt.md
-
