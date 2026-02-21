@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-const GITHUB_URL = "https://github.com/Jonohobs/DreamsToReality";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -80,27 +79,6 @@ export default function Nav() {
               {link.label}
             </button>
           ))}
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono-dm text-sm rounded-full border transition-all duration-300 flex-shrink-0"
-            style={{
-              padding: "0.25cm 0.5cm",
-              borderColor: "rgba(255,255,255,0.15)",
-              color: "rgba(255,255,255,0.7)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "#D4FF00";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#D4FF00";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.15)";
-              (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
-            }}
-          >
-            GitHub ↗
-          </a>
         </div>
       </div>
     </nav>

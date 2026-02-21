@@ -114,10 +114,10 @@ const FEATURES = [
   },
   {
     title: "MIT Licensed, Community First",
-    desc: "Core pipeline is open source, MIT licensed. Contribute on GitHub, share results, help make this the most reliable Dreams-to-3D pipeline around.",
+    desc: "Core pipeline is open source, MIT licensed. Share results and help make this the most reliable Dreams-to-3D pipeline around.",
     tags: [
       { label: "MIT",       color: "#D4FF00" },
-      { label: "GitHub",    color: "#D4FF00" },
+      { label: "Open Source", color: "#D4FF00" },
       { label: "Community", color: "#FF6BD6" },
     ],
     accent: "#D4FF00",
